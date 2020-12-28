@@ -1,0 +1,23 @@
+HOTKEY Orders: This Mod is meant to enable you assign multiple hotkeys to a single hotkey. As well as additional Units to HotBuild. The avaliable functions or capabilties:
+1) Any Toggle Ability (Shields/Intel/Jamming/Etc), the code is written as
+"misckeyactions.toggleScript()" 
+and then add "thing" you are toggling into the () so if you wanted to toggle shields you'd do
+"misckeyactions.toggleScript("Shield")" 
+
+2) Any unit or set of units buildable in hotbuild you write good as the following
+"hotbuild.buildAction()"
+Like before you add to () the thing you want to build so for example you'd do 
+"hotbuild.buildAction("T1_Tank")" 
+If you wanted to add T1 Tank to that hotkey group. 
+
+3) You have some weirder commands these are actions like smartselecting various units, overcharge, and more. These are covered under a bit more individually and feel free to PM Dragun101 with helping setting those up if needed.
+
+4) You can add keybindings from other mods to this mod. Including but not limited to disperse move, advanced target pirorities, or otherwise. And for these mods you do not need them enable. 
+
+5) Adding new hotbuild options is easy enough as you can with I add auxillary as hotbuild. I did this by going to unitkeygroups and adding a new category (auxillary) and the game will handle the rest.
+
+However it is unneeded when all you desire is to add option or additional keybinding under the various functions. 
+
+6) The functions work by going down a list of commands. One example being that it can, toggle repeat build then build T1 Engineer and T1 Tank. 
+
+Finally if you put a Hotbuilt option with an option to scroll through multiple, you will only be able to choose the first one chosen otherwise have to press that HotBuild option standard Hotbuilt Key to cycle. 
