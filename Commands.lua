@@ -10,7 +10,10 @@ local ping = import('/lua/ui/game/ping.lua')
 local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
 local reclaim = import('/lua/ui/game/reclaim.lua')
 local cycle
-local stop 
+local stop
+local joe
+local john
+local jim 
 
 function toggleAbilities1()
     local selection = GetSelectedUnits() or nil
@@ -20,6 +23,18 @@ function toggleAbilities1()
         cycle = nil
     end
     if cycle then
+        misckeyactions.CycleIdleFactories()
+        joe = true
+    end
+    if joe then
+        misckeyactions.CycleIdleFactories()
+        john = true
+    end
+    if john then
+        misckeyactions.CycleIdleFactories()
+        jim = true
+    end
+    if jim then
         misckeyactions.CycleIdleFactories()
         stop = true
     end
