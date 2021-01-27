@@ -12,21 +12,27 @@ local reclaim = import('/lua/ui/game/reclaim.lua')
 
 function toggleAbilities1()
     local selection = GetSelectedUnits() or nil
-    if not selection then
-    misckeyactions.CycleIdleFactories()
-    end
-    hotbuild.buildAction("Heavy_Artillery_Installation")
-    hotbuild.buildAction("Artillery_Installation")
     hotbuild.buildAction("T3_Strategic_Bomber")
     hotbuild.buildAction("T3_Aircraft_Carrier")
     hotbuild.buildAction("T3_Battlecruiser")
+    hotbuild.buildAction("Artillery_Installation")
+    ForkThread(Arty)
+    if not selection then
+        misckeyactions.GetNearestIdleEngineerNotACU()
+    end
+end
+
+function Arty()
+    WaitSeconds(2)
+    hotbuild.buildAction("Heavy_Artillery_Installation")
 end
 
 function toggleAbilities2()
     local selection = GetSelectedUnits() or nil
-    hotbuild.buildAction("T1Factory")
+    hotbuild.buildAction("Builders")
     hotbuild.buildAction("T2_Support_Land_Factory")
     hotbuild.buildAction("T3_Support_Land_Factory")
+    hotbuild.buildAction("Upgrades")
 end
 
 function toggleAbilities3()
@@ -90,9 +96,9 @@ end
 
 function toggleAbilities9()
     local selection = GetSelectedUnits() or nil
-spreadattack.SpreadAttack()
-smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")
-if not selection then    
+    spreadattack.SpreadAttack()
+    if not selection then     
+    smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
     smart.smartSelect("+inview +idle COMMAND")
 end
 end
