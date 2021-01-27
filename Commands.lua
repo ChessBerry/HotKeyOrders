@@ -15,13 +15,16 @@ function toggleAbilities1()
     hotbuild.buildAction("T3_Strategic_Bomber")
     hotbuild.buildAction("T3_Aircraft_Carrier")
     hotbuild.buildAction("T3_Battlecruiser")
-    hotbuild.buildAction("Heavy_Artillery_Installation")
+    hotbuild.buildAction("Artillery_Installation")
     ForkThread(Arty)
+    if not selection then
+        misckeyactions.GetNearestIdleEngineerNotACU()
+    end
 end
 
 function Arty()
     WaitSeconds(2)
-    hotbuild.buildAction("Artillery_Installation")
+    hotbuild.buildAction("Heavy_Artillery_Installation")
 end
 
 function toggleAbilities2()
@@ -95,14 +98,6 @@ function toggleAbilities9()
     spreadattack.SpreadAttack()
     if not selection then     
     smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
-    smart.smartSelect("+inview +idle COMMAND")
-end
-end
-
-function toggleAbilities10()
-    local selection = GetSelectedUnits() or nil
-    spreadattack.SpreadAttack()
-    if not selection then     
     smart.smartSelect("+inview +idle COMMAND")
 end
 end
