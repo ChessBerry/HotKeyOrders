@@ -34,3 +34,4 @@ KeyMapper.SetUserKeyAction('shift_order9', {action =  'UI_Lua import("/mods/HotK
 
 KeyMapper.SetUserKeyAction('auxilliary', {action= 'UI_Lua import("/lua/keymap/hotbuild.lua").buildAction("Auxillary")', category = 'hotbuilding', order = 1121})
 KeyMapper.SetUserKeyAction('T1Factory', {action= 'UI_Lua import("/lua/keymap/hotbuild.lua").buildAction("T1Factory")', category = 'hotbuilding', order = 1122})
+KeyMapper.SetUserKeyAction('shift_select_all_idle_eng_onscreen', {action = 'UI_SelectByCategory +inview +idle ENGINEER', category = 'selection', order = 18})
