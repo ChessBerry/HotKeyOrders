@@ -29,10 +29,10 @@ end
 
 function toggleAbilities2()
     local selection = GetSelectedUnits() or nil
+    hotbuild.buildAction("Upgrades")
     hotbuild.buildAction("Builders")
     hotbuild.buildAction("T2_Support_Land_Factory")
     hotbuild.buildAction("T3_Support_Land_Factory")
-    hotbuild.buildAction("Upgrades")
 end
 
 function toggleAbilities3()
