@@ -38,6 +38,9 @@ if KeyDescriptions['order9'] == nil then
         KeyDescriptions['order9'] = 'Spread/Commander/Engi'
 end
 
+if KeyDescriptions['order10'] == nil then
+        KeyDescriptions['order10'] = 'IExist'
+end
 
 if KeyDescriptions['auxilliary'] == nil then
         KeyDescriptions['auxilliary'] = 'Mobile Stealth/Shields'
@@ -58,5 +61,6 @@ KeyMapper.SetUserKeyAction('order6', {action =  'UI_Lua import("/mods/HotKeyOrde
 KeyMapper.SetUserKeyAction('order7', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities7()', category = 'HotKeyKeys', order = 107})
 KeyMapper.SetUserKeyAction('order8', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities8()', category = 'HotKeyKeys', order = 108})
 KeyMapper.SetUserKeyAction('order9', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities9()', category = 'HotKeyKeys', order = 109})
+KeyMapper.SetUserKeyAction('order10', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities10()', category = 'HotKeyKeys', order = 110})
 KeyMapper.SetUserKeyAction('auxilliary', {action= 'UI_Lua import("/lua/keymap/hotbuild.lua").buildAction("Auxillary")', category = 'hotbuilding', order = 1121})
 KeyMapper.SetUserKeyAction('T1Factory', {action= 'UI_Lua import("/lua/keymap/hotbuild.lua").buildAction("T1Factory")', category = 'hotbuilding', order = 1122})

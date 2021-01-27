@@ -9,38 +9,11 @@ local avatars = import('/lua/ui/game/avatars.lua')
 local ping = import('/lua/ui/game/ping.lua')
 local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
 local reclaim = import('/lua/ui/game/reclaim.lua')
-local cycle
-local stop
-local joe
-local john
-local jim 
 
 function toggleAbilities1()
     local selection = GetSelectedUnits() or nil
-    if cycle and stop then
-        misckeyactions.CycleIdleFactories()
-        stop = nil
-        cycle = nil
-    end
-    if cycle then
-        misckeyactions.CycleIdleFactories()
-        joe = true
-    end
-    if joe then
-        misckeyactions.CycleIdleFactories()
-        john = true
-    end
-    if john then
-        misckeyactions.CycleIdleFactories()
-        jim = true
-    end
-    if jim then
-        misckeyactions.CycleIdleFactories()
-        stop = true
-    end
     if not selection then
         misckeyactions.CycleIdleFactories()
-        cycle = true
     end
     hotbuild.buildAction("T3_Strategic_Bomber")
     hotbuild.buildAction("T3_Aircraft_Carrier")
@@ -125,6 +98,14 @@ function toggleAbilities9()
     spreadattack.SpreadAttack()
     if not selection then     
     smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
+    smart.smartSelect("+inview +idle COMMAND")
+end
+end
+
+function toggleAbilities10()
+    local selection = GetSelectedUnits() or nil
+    spreadattack.SpreadAttack()
+    if not selection then     
     smart.smartSelect("+inview +idle COMMAND")
 end
 end
