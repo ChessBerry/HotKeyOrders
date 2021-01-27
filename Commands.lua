@@ -12,9 +12,6 @@ local reclaim = import('/lua/ui/game/reclaim.lua')
 
 function toggleAbilities1()
     local selection = GetSelectedUnits() or nil
-    if not selection then
-        misckeyactions.CycleIdleFactories()
-    end
     hotbuild.buildAction("T3_Strategic_Bomber")
     hotbuild.buildAction("T3_Aircraft_Carrier")
     hotbuild.buildAction("T3_Battlecruiser")
@@ -29,7 +26,7 @@ end
 
 function toggleAbilities2()
     local selection = GetSelectedUnits() or nil
-    hotbuild.buildAction("T1Factory")
+    hotbuild.buildAction("Builders")
     hotbuild.buildAction("T2_Support_Land_Factory")
     hotbuild.buildAction("T3_Support_Land_Factory")
 end
