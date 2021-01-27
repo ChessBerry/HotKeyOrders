@@ -1,9 +1,9 @@
 name = "A HotKey Keys"
-version = 1
+version = 2
 copyright = "Dragun101@2020"
 description = "HotKey For Hotkeys. Unmodified Mod is written with DisperseMove, and Advanced Target installed"
 author = "Dragun101"
-uid = "HOTKEY-09d7-498f-8c44-a05d4b8985x2"
+uid = "HOTKEY-19d7-498f-8c44-a05d4b8985x2"
 selectable = true
 icon = "/mods/HotKeyOrders/HotOrders.png"
 enabled = true
