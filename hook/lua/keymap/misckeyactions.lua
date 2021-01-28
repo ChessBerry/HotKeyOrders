@@ -32,6 +32,7 @@ KeyMapper.SetUserKeyAction('shift_order7', {action =  'UI_Lua import("/mods/HotK
 KeyMapper.SetUserKeyAction('shift_order8', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities8()', category = 'HotKeyKeys', order = 118})
 KeyMapper.SetUserKeyAction('shift_order9', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities9()', category = 'HotKeyKeys', order = 119})
 
+KeyMapper.SetUserKeyAction('SelectIdleFighterInView', {action = 'UI_Lua import("/lua/keymap/smartSelection.lua").smartSelect("AIR HIGHALTAIR ANTIAIR +inview +idle -BOMBER -EXPERIMENTAL")', category = 'HotKeyOrders', order = 120})
 KeyMapper.SetUserKeyAction('auxilliary', {action= 'UI_Lua import("/lua/keymap/hotbuild.lua").buildAction("Auxillary")', category = 'hotbuilding', order = 1121})
 KeyMapper.SetUserKeyAction('T1Factory', {action= 'UI_Lua import("/lua/keymap/hotbuild.lua").buildAction("T1Factory")', category = 'hotbuilding', order = 1122})
 KeyMapper.SetUserKeyAction('shift_select_all_idle_eng_onscreen', {action = 'UI_SelectByCategory +inview +idle ENGINEER', category = 'selection', order = 18})

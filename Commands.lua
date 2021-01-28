@@ -76,8 +76,8 @@ function toggleAbilities6()
     local selection = GetSelectedUnits() or nil
     disperse.DisperseMove()
     if not selection then    
-    smart.smartSelect("AIR HIGHALTAIR ANTIAIR -BOMBER -EXPERIMENTAL")
-    misckeyactions.SetWeaponPrioritiesHotkey("AntiAir")
+    smart.smartSelect("AIR HIGHALTAIR ANTIAIR -EXPERIMENTAL")
+    misckeyactions.SetWeaponPrioritiesHotkey("Fighters")
     end
 end
 
