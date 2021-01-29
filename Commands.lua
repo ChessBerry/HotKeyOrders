@@ -96,9 +96,14 @@ end
 
 function toggleAbilities9()
     local selection = GetSelectedUnits() or nil
-    spreadattack.SpreadAttack()
-    if not selection then     
     smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
-    smart.smartSelect("+inview +idle COMMAND")
+    ForkThread(Engies)
 end
+
+function Engies()
+    local selection = GetSelectedUnits() or nil
+    if not selection then
+        WaitSeconds(0.25)
+        smart.smartSelect("+inview +idle COMMAND")
+    end
 end
