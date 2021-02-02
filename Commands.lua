@@ -37,8 +37,9 @@ end
 
 function toggleAbilities3()
     local selection = GetSelectedUnits() or nil
+    ConExecute('StartCommandMode order RULEUCC_Nuke')
+    ConExecute('StartCommandMode order RULEUCC_Tactical') 
     construction.ToggleUnitPause()
-    misckeyactions.toggleCloakJammingStealthScript()
     if not selection then
     smart.smartSelect("MASSFABRICATION STRUCTURE -EXPERIMENTAL")    
     misckeyactions.toggleScript("Production")
@@ -84,13 +85,14 @@ end
 function toggleAbilities7()
        local selection = GetSelectedUnits() or nil
     misckeyactions.ToggleRepeatBuild()
+    hotbuild.buildAction("T1_Tank")
     hotbuild.buildAction("T1_Engineer")
     hotbuild.buildAction("T1_Tank")
 end 
 
 function toggleAbilities8()
         local selection = GetSelectedUnits() or nil
-    smart.smartSelect("+inview +idle LAND OVERLAYDIRECTFIRE MOBILE -COMMAND -EXPERIMENTAL")
+    smart.smartSelect("+inview +idle OVERLAYDIRECTFIRE MOBILE LAND -COMMAND -EXPERIMENTAL")
     misckeyactions.SetWeaponPrioritiesHotkey("Units")
 end
 
