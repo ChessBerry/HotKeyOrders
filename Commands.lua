@@ -1,7 +1,7 @@
 local misckeyactions = import('/lua/keymap/misckeyactions.lua')
 local orders = import('/lua/ui/game/orders.lua')
 local hotbuild = import('/lua/keymap/hotbuild.lua')
-local select = import('/lua/ui/game/selection.lua')
+local select = import('/lua/ui/game/selection.lua') -- File doesn't exist? Is referenced in the main game's repo too though
 local spreadattack = import ('/lua/spreadattack.lua')
 local smart = import('/lua/keymap/smartSelection.lua')
 local construction = import('/lua/ui/game/construction.lua')

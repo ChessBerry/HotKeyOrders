@@ -1,5 +1,5 @@
 name = "A HotKey Keys"
-version = 2
+version = 3
 copyright = "Dragun101@2020"
 description = "HotKey For Hotkeys. Unmodified Mod is written with DisperseMove, and Advanced Target installed"
 author = "Dragun101"
