@@ -11,8 +11,8 @@ local ping = import('/lua/ui/game/ping.lua')
 local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
 local reclaim = import('/lua/ui/game/reclaim.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
-local rui = import('/lua/ui/game/commandmode.lua') --is here, and not in the RUI mod folder via the hook RUI uses, I think
-
+local rui = import('/lua/ui/game/commandmode.lua') -- RUI is here, and not in the RUI mod folder via the hook RUI uses, I think
+local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 -- Note: Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
 
 -- *'(hko_hotkey_)(\w*)'.*
@@ -20,31 +20,31 @@ local rui = import('/lua/ui/game/commandmode.lua') --is here, and not in the RUI
 --     print("$2")
 -- end
 
------------ Helper Functions by Dragun
-
-function Arty()
-    WaitSeconds(2)
-    hotbuild.buildAction("Heavy_Artillery_Installation")
-end
-
-function Fabricators()
-    WaitSeconds(3)
-    misckeyactions.toggleScript("Production")
-end
-
-function Claim()
-    WaitSeconds(6)
-    reclaim.ToggleReclaim()
-end
 
 ----------- HKO Hotkey Overloading Functions
 
 function hko_hotkey_w()
     print("w")
+    local selection = GetSelectedUnits() or nil
+    if not table.empty(EntityCategoryFilterDown((categories.FACTORY - categories.GATE) + categories.EXPERIMENTAL, selection)) then
+        -- t1 engies for all facs and experimentals that can make engies
+        print("w1")
+        hotbuild.buildAction("Builders")
+    elseif not table.empty(EntityCategoryFilterDown(categories.GATE, selection)) then
+        -- T3 fac, Quantum Gate, 
+        print("w2")
+        hbo.buildAction("eng_or_ras")
+    else
+        -- Units, but only the ACU matters
+        print("w3")
+        orders.EnterOverchargeMode()
+    end
+    selection = nil
 end
 
 function hko_hotkey_w_s()
     print("w_s")
+    hko_hotkey_w()
 end
 
 function hko_hotkey_e()
@@ -101,7 +101,8 @@ end
 function hko_hotkey_a()
     print("a")
     local selection = GetSelectedUnits() or nil
-    if EntityCategoryFilterDown(categories.STRUCTURE, selection) then
+    if not table.empty(EntityCategoryFilterDown(categories.STRUCTURE, selection)) then
+        -- Only structures can upgrade
         print("a1")
         hotbuild.buildAction("Upgrades")
     else
@@ -143,6 +144,24 @@ end
 
 
 ----------- Functions by Dragun
+
+-- ----------- Helper Functions by Dragun
+
+-- function Arty()
+--     WaitSeconds(2)
+--     hotbuild.buildAction("Heavy_Artillery_Installation")
+-- end
+
+-- function Fabricators()
+--     WaitSeconds(3)
+--     misckeyactions.toggleScript("Production")
+-- end
+
+-- function Claim()
+--     WaitSeconds(6)
+--     reclaim.ToggleReclaim()
+-- end
+
 
 -- function toggleAbilities1()
 --     print("a")
