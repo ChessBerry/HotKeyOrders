@@ -15,6 +15,10 @@ local rui = import('/lua/ui/game/commandmode.lua') --is here, and not in the RUI
 
 -- Note: Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
 
+-- *'(hko_hotkey_)(\w*)'.*
+-- function $1$2()
+--     print("$2")
+-- end
 
 ----------- Helper Functions by Dragun
 
@@ -35,103 +39,187 @@ end
 
 ----------- HKO Hotkey Overloading Functions
 
--- function hko_hotkey_a()
---     print("a")
---     -- orders.EnterOverchargeMode()
-    
---     rui.EasyReclaim()
---     -- hotbuild.buildAction("Upgrades")
+function hko_hotkey_w()
+    print("w")
+end
 
--- end
+function hko_hotkey_w_s()
+    print("w_s")
+end
+
+function hko_hotkey_e()
+    print("e")
+end
+
+function hko_hotkey_e_s()
+    print("e_s")
+end
+
+function hko_hotkey_r()
+    print("r")
+end
+
+function hko_hotkey_r_s()
+    print("r_s")
+end
+
+function hko_hotkey_r_a()
+    print("r_a")
+end
+
+function hko_hotkey_r_as()
+    print("r_as")
+end
+
+function hko_hotkey_t()
+    print("t")
+end
+
+function hko_hotkey_t_s()
+    print("t_s")
+end
+
+function hko_hotkey_y()
+    print("y")
+end
+
+function hko_hotkey_y_s()
+    print("y_s")
+end
+
+function hko_hotkey_u()
+    print("u")
+end
+
+function hko_hotkey_u_s()
+    print("u_s")
+end
+
+-----
 
 
--- function hko_hotkey_a-s()
---     print("a-s")
---     -- orders.EnterOverchargeMode()
-    
---     rui.EasyReclaim()
---     -- hotbuild.buildAction("Upgrades")
+function hko_hotkey_a()
+    print("a")
+    local selection = GetSelectedUnits() or nil
+    if EntityCategoryFilterDown(categories.STRUCTURE, selection) then
+        print("a1")
+        hotbuild.buildAction("Upgrades")
+    else
+        print("a2")
+        rui.EasyReclaim()
+    end 
+end
 
--- end
+function hko_hotkey_a_s()
+    print("a_s")
+    hko_hotkey_a()
+end
+
+function hko_hotkey_s()
+    print("s")
+end
+
+function hko_hotkey_s_s()
+    print("s_s")
+end
+
+function hko_hotkey_d()
+    print("d")
+end
+
+function hko_hotkey_d_s()
+    print("d_s")
+end
+
+function hko_hotkey_f()
+    print("f")
+end
+
+function hko_hotkey_f_s()
+    print("f_s")
+end
+
+
+
 
 ----------- Functions by Dragun
 
-function toggleAbilities1()
-    print("a")
-    -- local selection = GetSelectedUnits() or nil
-    -- hotbuild.buildAction("T3_Strategic_Bomber")
-    -- hotbuild.buildAction("T3_Aircraft_Carrier")
-    -- hotbuild.buildAction("T3_Battlecruiser")
-    -- hotbuild.buildAction("Artillery_Installation")
-    -- ForkThread(Arty)
-    -- if not selection then
-    --     misckeyactions.GetNearestIdleEngineerNotACU()
-    -- end
-end
+-- function toggleAbilities1()
+--     print("a")
+--     -- local selection = GetSelectedUnits() or nil
+--     -- hotbuild.buildAction("T3_Strategic_Bomber")
+--     -- hotbuild.buildAction("T3_Aircraft_Carrier")
+--     -- hotbuild.buildAction("T3_Battlecruiser")
+--     -- hotbuild.buildAction("Artillery_Installation")
+--     -- ForkThread(Arty)
+--     -- if not selection then
+--     --     misckeyactions.GetNearestIdleEngineerNotACU()
+--     -- end
+-- end
 
-function toggleAbilities2()
-    print("s")
-    local selection = GetSelectedUnits() or nil
-    hotbuild.buildAction("Upgrades")
-    hotbuild.buildAction("Builders")
-    hotbuild.buildAction("T2_Support_Land_Factory")
-    hotbuild.buildAction("T3_Support_Land_Factory")
-end
+-- function toggleAbilities2()
+--     print("s")
+--     local selection = GetSelectedUnits() or nil
+--     hotbuild.buildAction("Upgrades")
+--     hotbuild.buildAction("Builders")
+--     hotbuild.buildAction("T2_Support_Land_Factory")
+--     hotbuild.buildAction("T3_Support_Land_Factory")
+-- end
 
-function toggleAbilities3()
-    local selection = GetSelectedUnits() or nil
-    construction.ToggleUnitPause()
-    misckeyactions.toggleCloakJammingStealthScript()
-    if not selection then
-    smart.smartSelect("MASSFABRICATION STRUCTURE -EXPERIMENTAL")    
-    misckeyactions.toggleScript("Production")
-    ForkThread(Fabricators)
-    end
-end
+-- function toggleAbilities3()
+--     local selection = GetSelectedUnits() or nil
+--     construction.ToggleUnitPause()
+--     misckeyactions.toggleCloakJammingStealthScript()
+--     if not selection then
+--     smart.smartSelect("MASSFABRICATION STRUCTURE -EXPERIMENTAL")    
+--     misckeyactions.toggleScript("Production")
+--     ForkThread(Fabricators)
+--     end
+-- end
 
-function toggleAbilities4()
-    local selection = GetSelectedUnits() or nil
-    if not selection then
-    ping.DoPing("alert")
-    end
-    hotbuild.buildAction("T1_Tank")
-    misckeyactions.SetWeaponPrioritiesHotkey("ACU")
-end
+-- function toggleAbilities4()
+--     local selection = GetSelectedUnits() or nil
+--     if not selection then
+--     ping.DoPing("alert")
+--     end
+--     hotbuild.buildAction("T1_Tank")
+--     misckeyactions.SetWeaponPrioritiesHotkey("ACU")
+-- end
 
-function toggleAbilities5()
-        local selection = GetSelectedUnits() or nil
-    reclaim.ToggleReclaim()
-    ForkThread(Claim)
-    hotbuild.buildAction("Auxillary")
-end
+-- function toggleAbilities5()
+--         local selection = GetSelectedUnits() or nil
+--     reclaim.ToggleReclaim()
+--     ForkThread(Claim)
+--     hotbuild.buildAction("Auxillary")
+-- end
 
-function toggleAbilities6()
-    local selection = GetSelectedUnits() or nil
-    disperse.DisperseMove()
-    if not selection then    
-    smart.smartSelect("AIR HIGHALTAIR ANTIAIR -BOMBER -EXPERIMENTAL")
-    misckeyactions.SetWeaponPrioritiesHotkey("AntiAir")
-    end
-end
+-- function toggleAbilities6()
+--     local selection = GetSelectedUnits() or nil
+--     disperse.DisperseMove()
+--     if not selection then    
+--     smart.smartSelect("AIR HIGHALTAIR ANTIAIR -BOMBER -EXPERIMENTAL")
+--     misckeyactions.SetWeaponPrioritiesHotkey("AntiAir")
+--     end
+-- end
 
-function toggleAbilities7()
-       local selection = GetSelectedUnits() or nil
-    misckeyactions.ToggleRepeatBuild()
-    hotbuild.buildAction("T1_Engineer")
-    hotbuild.buildAction("T1_Tank")
-end 
+-- function toggleAbilities7()
+--        local selection = GetSelectedUnits() or nil
+--     misckeyactions.ToggleRepeatBuild()
+--     hotbuild.buildAction("T1_Engineer")
+--     hotbuild.buildAction("T1_Tank")
+-- end 
 
-function toggleAbilities8()
-        local selection = GetSelectedUnits() or nil
-    smart.smartSelect("+inview +idle LAND OVERLAYDIRECTFIRE MOBILE -COMMAND -EXPERIMENTAL")
-    misckeyactions.SetWeaponPrioritiesHotkey("Units")
-end
+-- function toggleAbilities8()
+--         local selection = GetSelectedUnits() or nil
+--     smart.smartSelect("+inview +idle LAND OVERLAYDIRECTFIRE MOBILE -COMMAND -EXPERIMENTAL")
+--     misckeyactions.SetWeaponPrioritiesHotkey("Units")
+-- end
 
-function toggleAbilities9()
-    local selection = GetSelectedUnits() or nil
-    spreadattack.SpreadAttack()
-    if not selection then     
-        smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
-        smart.smartSelect("+inview +idle COMMAND")
-    end
-end
+-- function toggleAbilities9()
+--     local selection = GetSelectedUnits() or nil
+--     spreadattack.SpreadAttack()
+--     if not selection then     
+--         smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
+--         smart.smartSelect("+inview +idle COMMAND")
+--     end
+-- end
