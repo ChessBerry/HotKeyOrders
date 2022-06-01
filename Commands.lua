@@ -16,22 +16,32 @@ local CommandMode = import('/lua/ui/game/commandmode.lua') -- RUI is here, and n
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 -- Note: Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
 
--- *'(hko_hotkey_)(\w*)'.*
--- function $1$2()
---     print("$2")
--- end
+-- Regex to convert the KeyMapper.SetUserKeyAction stuff into a function blueprint
+--  *'(hko_hotkey_)(\w*)'.*
+--  function $1$2()
+--      print("$2")
+--  end
 
+----------- HKO Helper Functions
+
+-- Feels like there should be a better way to filter the selection table than 
+--  "not table.empty(EntityCategoryFilterDown())" but I haven't found one..
+function SelectionBelongsToCategory(categories, selection)
+    print("SelectionBelongsToCategory")
+    return not table.empty(EntityCategoryFilterDown(categories, selection))
+end
 
 ----------- HKO Hotkey Overloading Functions
+
 
 function hko_hotkey_w()
     print("w")
     local selection = GetSelectedUnits() or nil
-    if not table.empty(EntityCategoryFilterDown((categories.FACTORY - categories.GATE) + categories.EXPERIMENTAL, selection)) then
+    if SelectionBelongsToCategory((categories.FACTORY - categories.GATE) + categories.EXPERIMENTAL, selection) then
         -- t1 engies for all facs and experimentals that can make engies
         print("w1")
         hotbuild.buildAction("Builders")
-    elseif not table.empty(EntityCategoryFilterDown(categories.GATE, selection)) then
+    elseif SelectionBelongsToCategory(categories.GATE, selection) then
         -- T3 fac, Quantum Gate, 
         print("w2")
         hbo.buildAction("eng_or_ras")
@@ -40,7 +50,6 @@ function hko_hotkey_w()
         print("w3")
         orders.EnterOverchargeMode()
     end
-    selection = nil
 end
 
 function hko_hotkey_w_s()
@@ -104,7 +113,7 @@ end
 function hko_hotkey_a()
     print("a")
     local selection = GetSelectedUnits() or nil
-    if not table.empty(EntityCategoryFilterDown(categories.STRUCTURE, selection)) then
+    if SelectionBelongsToCategory(categories.STRUCTURE, selection) then
         -- Only structures can upgrade
         print("a1")
         hotbuild.buildAction("Upgrades")

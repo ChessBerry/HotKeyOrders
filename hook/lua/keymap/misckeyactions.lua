@@ -20,7 +20,8 @@ end
 --  Probably nothing but alphanumeric and underscores actually
 -- Note: No clue what the "order" parameter thingy does
 
--- (.*')(hko_hotkey_\w*)('.*)(.toggleAbilities9\(\))(.*)
+-- Note: Regex for easy function conversion
+--  (.*')(hko_hotkey_\w*)('.*)(.toggleAbilities9\(\))(.*)
 
 -- KeyMapper.SetUserKeyAction('order1', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities1()', category = 'HotKeyKeys', order = 101})
 -- KeyMapper.SetUserKeyAction('order2', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities1()', category = 'HotKeyKeys', order = 110})
