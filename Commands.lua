@@ -1,3 +1,4 @@
+-- Define custom hotkey functions, overloading many of the default/mod hotkeys
 local misckeyactions = import('/lua/keymap/misckeyactions.lua')
 local orders = import('/lua/ui/game/orders.lua')
 local hotbuild = import('/lua/keymap/hotbuild.lua')
@@ -9,25 +10,67 @@ local avatars = import('/lua/ui/game/avatars.lua')
 local ping = import('/lua/ui/game/ping.lua')
 local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
 local reclaim = import('/lua/ui/game/reclaim.lua')
+-- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
+local rui = import('/lua/ui/game/commandmode.lua') --is here, and not in the RUI mod folder via the hook RUI uses, I think
 
-function toggleAbilities1()
-    local selection = GetSelectedUnits() or nil
-    hotbuild.buildAction("T3_Strategic_Bomber")
-    hotbuild.buildAction("T3_Aircraft_Carrier")
-    hotbuild.buildAction("T3_Battlecruiser")
-    hotbuild.buildAction("Artillery_Installation")
-    ForkThread(Arty)
-    if not selection then
-        misckeyactions.GetNearestIdleEngineerNotACU()
-    end
-end
+-- Note: Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
+
+
+----------- Helper Functions by Dragun
 
 function Arty()
     WaitSeconds(2)
     hotbuild.buildAction("Heavy_Artillery_Installation")
 end
 
+function Fabricators()
+    WaitSeconds(3)
+    misckeyactions.toggleScript("Production")
+end
+
+function Claim()
+    WaitSeconds(6)
+    reclaim.ToggleReclaim()
+end
+
+----------- HKO Hotkey Overloading Functions
+
+-- function hko_hotkey_a()
+--     print("a")
+--     -- orders.EnterOverchargeMode()
+    
+--     rui.EasyReclaim()
+--     -- hotbuild.buildAction("Upgrades")
+
+-- end
+
+
+-- function hko_hotkey_a-s()
+--     print("a-s")
+--     -- orders.EnterOverchargeMode()
+    
+--     rui.EasyReclaim()
+--     -- hotbuild.buildAction("Upgrades")
+
+-- end
+
+----------- Functions by Dragun
+
+function toggleAbilities1()
+    print("a")
+    -- local selection = GetSelectedUnits() or nil
+    -- hotbuild.buildAction("T3_Strategic_Bomber")
+    -- hotbuild.buildAction("T3_Aircraft_Carrier")
+    -- hotbuild.buildAction("T3_Battlecruiser")
+    -- hotbuild.buildAction("Artillery_Installation")
+    -- ForkThread(Arty)
+    -- if not selection then
+    --     misckeyactions.GetNearestIdleEngineerNotACU()
+    -- end
+end
+
 function toggleAbilities2()
+    print("s")
     local selection = GetSelectedUnits() or nil
     hotbuild.buildAction("Upgrades")
     hotbuild.buildAction("Builders")
@@ -46,11 +89,6 @@ function toggleAbilities3()
     end
 end
 
-function Fabricators()
-    WaitSeconds(3)
-    misckeyactions.toggleScript("Production")
-end
-
 function toggleAbilities4()
     local selection = GetSelectedUnits() or nil
     if not selection then
@@ -65,11 +103,6 @@ function toggleAbilities5()
     reclaim.ToggleReclaim()
     ForkThread(Claim)
     hotbuild.buildAction("Auxillary")
-end
-
-function Claim()
-    WaitSeconds(6)
-    reclaim.ToggleReclaim()
 end
 
 function toggleAbilities6()
@@ -98,7 +131,7 @@ function toggleAbilities9()
     local selection = GetSelectedUnits() or nil
     spreadattack.SpreadAttack()
     if not selection then     
-    smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
-    smart.smartSelect("+inview +idle COMMAND")
-end
+        smart.smartSelect("+inview +idle ENGINEER MOBILE -COMMAND -FIELDENGINEER -EXPERIMENTAL")   
+        smart.smartSelect("+inview +idle COMMAND")
+    end
 end
