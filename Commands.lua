@@ -10,8 +10,9 @@ local avatars = import('/lua/ui/game/avatars.lua')
 local ping = import('/lua/ui/game/ping.lua')
 local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
 local reclaim = import('/lua/ui/game/reclaim.lua')
+local CommandMode = import('/lua/ui/game/commandmode.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
-local rui = import('/lua/ui/game/commandmode.lua') -- RUI is here, and not in the RUI mod folder via the hook RUI uses, I think
+local CommandMode = import('/lua/ui/game/commandmode.lua') -- RUI is here, and not in the RUI mod folder via the hook RUI uses, I think
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 -- Note: Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
 
@@ -49,10 +50,12 @@ end
 
 function hko_hotkey_e()
     print("e")
+    CommandMode.StartCommandMode('order', {name = 'RULEUCC_Transport'})
 end
 
 function hko_hotkey_e_s()
     print("e_s")
+    hko_hotkey_e()
 end
 
 function hko_hotkey_r()
@@ -107,7 +110,7 @@ function hko_hotkey_a()
         hotbuild.buildAction("Upgrades")
     else
         print("a2")
-        rui.EasyReclaim()
+        CommandMode.EasyReclaim()
     end 
 end
 
