@@ -14,8 +14,12 @@ if KeyDescriptions['T1Factory'] == nil then
         KeyDescriptions['T1Factory'] = 'T1Factories'
 end
 
------
+----- Delete all HotKeyKeys hotkeys - doesn't work..
 
+-- local Prefs = import('/lua/user/prefs.lua')
+-- Prefs.SetToCurrentProfile("HotKeyKeys", nil)
+
+-----
 -- Note: Seems like you can't have a minus '-' character in any of the hotkey names.
 --  Probably nothing but alphanumeric and underscores actually
 -- Note: No clue what the "order" parameter thingy does
@@ -48,6 +52,8 @@ end
 
 KeyMapper.SetUserKeyAction('hko_hotkey_w', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_w()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_w_s', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_w_s()', category = 'HotKeyKeys', order = 101})
+KeyMapper.SetUserKeyAction('hko_hotkey_w_a', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_w_a()', category = 'HotKeyKeys', order = 101})
+KeyMapper.SetUserKeyAction('hko_hotkey_w_as', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_w_as()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_e', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_e()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_e_s', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_e_s()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_r', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_r()', category = 'HotKeyKeys', order = 101})
