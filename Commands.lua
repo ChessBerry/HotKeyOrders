@@ -22,6 +22,7 @@ local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, bu
 --      print("$2")
 --  end
 
+
 ----------- HKO Helper Functions
 
 -- Feels like there should be a better way to filter the selection table than 
@@ -73,6 +74,7 @@ end
 
 function hko_hotkey_r_s()
     print("r_s")
+    hko_hotkey_r()
 end
 
 function hko_hotkey_r_a()
@@ -81,6 +83,7 @@ end
 
 function hko_hotkey_r_as()
     print("r_as")
+    hko_hotkey_r_a()
 end
 
 function hko_hotkey_t()
@@ -89,6 +92,7 @@ end
 
 function hko_hotkey_t_s()
     print("t_s")
+    hko_hotkey_t()
 end
 
 function hko_hotkey_y()
@@ -97,6 +101,7 @@ end
 
 function hko_hotkey_y_s()
     print("y_s")
+    hko_hotkey_y()
 end
 
 function hko_hotkey_u()
@@ -105,6 +110,7 @@ end
 
 function hko_hotkey_u_s()
     print("u_s")
+    hko_hotkey_u()
 end
 
 -----
@@ -134,6 +140,7 @@ end
 
 function hko_hotkey_s_s()
     print("s_s")
+    hko_hotkey_s()
 end
 
 function hko_hotkey_d()
@@ -142,6 +149,7 @@ end
 
 function hko_hotkey_d_s()
     print("d_s")
+    hko_hotkey_d()
 end
 
 function hko_hotkey_f()
@@ -150,6 +158,7 @@ end
 
 function hko_hotkey_f_s()
     print("f_s")
+    hko_hotkey_f()
 end
 
 
