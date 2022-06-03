@@ -172,9 +172,9 @@ end
 
 function hko_hotkey_u()
     print("u")
-    -- the hotbuild.buildAction("Mobilearty") has no structures in it, so we don't need a TableBelongsToCategory for
-    -- the hotbuild.buildAction("MassFab")
-    hotbuild.buildAction("MassFab") -- t2 rocket bots in here btw.
+    -- -- the hotbuild.buildAction("Mobilearty") has no structures in it, so we don't need a TableBelongsToCategory for
+    -- -- the hotbuild.buildAction("MassFab")
+    -- hotbuild.buildAction("MassFab") -- t2 rocket bots in here btw.
 end
 
 function hko_hotkey_u_s()
