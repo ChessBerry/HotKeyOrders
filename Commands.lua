@@ -45,24 +45,24 @@ end
 ----- 1st keyboard row
 
 function hko_hotkey_w(shift)
-    print("w")
+    -- print("w")
     if shift == nil then shift = false end
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory((categories.FACTORY - categories.GATE - categories.EXPERIMENTAL) + (categories.EXPERIMENTAL - categories.NAVAL - categories.AIR), selection) then
         -- t1 engies for all facs and fatboy (but not atlantis or czar)
-        print("w fac")
+        -- print("w fac")
         hotbuild.buildAction("Builders")
     elseif TableBelongsToCategory(categories.GATE, selection) then
         -- Quantum Gates
-        print("w gate")
+        -- print("w gate")
         hbo.buildAction("engi_sacu")
     elseif TableBelongsToCategory(categories.TRANSPORTATION, selection) then
         -- Transports
-        print("w transports")
+        -- print("w transports")
         CommandMode.StartCommandMode('order', {name = 'RULEUCC_Transport'})
     else
         -- ACU, Subs and (sera) destros, flyers that can dock
-        print("w acu")
+        -- print("w acu")
         orders.EnterOverchargeMode()
         orders.ToggleDiveOrder()
         orders.Dock(not shift) -- normal dock is .Dock(true), shift dock is .Dock(false) according to keyacctions
@@ -70,12 +70,12 @@ function hko_hotkey_w(shift)
 end
 
 function hko_hotkey_w_s()
-    print("w_s")
+    -- print("w_s")
     hko_hotkey_w(true)
 end
 
 function hko_hotkey_w_a()
-    print("w_a")
+    -- print("w_a")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.STRUCTURE * categories.TECH3, selection) then
         CommandMode.StartCommandMode('order', {name = 'RULEUCC_Nuke'}) -- nuke launch
@@ -89,12 +89,12 @@ function hko_hotkey_w_a()
 end
 
 function hko_hotkey_w_as()
-    print("w_as")
+    -- print("w_as")
     hko_hotkey_w_a()
 end
 
 function hko_hotkey_e()
-    print("e")
+    -- print("e")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.FACTORY - categories.GATE, selection) then
         hotbuild.buildAction("Sensors")
@@ -106,12 +106,12 @@ function hko_hotkey_e()
 end
 
 function hko_hotkey_e_s()
-    print("e_s")
+    -- print("e_s")
     hko_hotkey_e()
 end
 
 function hko_hotkey_r()
-    print("r")
+    -- print("r")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.FACTORY - categories.GATE, selection) then
         hotbuild.buildAction("TMD")
@@ -123,21 +123,21 @@ function hko_hotkey_r()
 end
 
 function hko_hotkey_r_s()
-    print("r_s")
+    -- print("r_s")
     hko_hotkey_r()
 end
 
 function hko_hotkey_r_a()
-    print("r_a")
+    -- print("r_a")
 end
 
 function hko_hotkey_r_as()
-    print("r_as")
+    -- print("r_as")
     hko_hotkey_r_a()
 end
 
 function hko_hotkey_t()
-    print("t")
+    -- print("t")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.FACTORY - categories.GATE, selection) then
         hotbuild.buildAction("XP")
@@ -149,12 +149,12 @@ function hko_hotkey_t()
 end
 
 function hko_hotkey_t_s()
-    print("t_s")
+    -- print("t_s")
     hko_hotkey_t()
 end
 
 function hko_hotkey_y()
-    print("y")
+    -- print("y")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.FACTORY - categories.GATE, selection) then
         hotbuild.buildAction("Mobilearty")
@@ -166,76 +166,76 @@ function hko_hotkey_y()
 end
 
 function hko_hotkey_y_s()
-    print("y_s")
+    -- print("y_s")
     hko_hotkey_y()
 end
 
 function hko_hotkey_u()
-    print("u")
+    -- print("u")
     -- -- the hotbuild.buildAction("Mobilearty") has no structures in it, so we don't need a TableBelongsToCategory for
     -- -- the hotbuild.buildAction("MassFab")
     -- hotbuild.buildAction("MassFab") -- t2 rocket bots in here btw.
 end
 
 function hko_hotkey_u_s()
-    print("u_s")
+    -- print("u_s")
     hko_hotkey_u()
 end
 
 ----- 2nd keyboard row
 
 function hko_hotkey_a()
-    print("a")
+    -- print("a")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.STRUCTURE, selection) then
         -- Only structures can upgrade
-        print("a1")
+        -- print("a1")
         hotbuild.buildAction("Upgrades")
     else
-        print("a2")
+        -- print("a2")
         CommandMode.EasyReclaim()
     end 
 end
 
 function hko_hotkey_a_s()
-    print("a_s")
+    -- print("a_s")
     hko_hotkey_a()
 end
 
 function hko_hotkey_s()
-    print("s")
+    -- print("s")
 end
 
 function hko_hotkey_s_s()
-    print("s_s")
+    -- print("s_s")
     hko_hotkey_s()
 end
 
 function hko_hotkey_d()
-    print("d")
+    -- print("d")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.SERAPHIM, selection) then
         -- make t1 sera land scout when you press the lab button, so that both d and r make sera scouts
-        print("d sera")
+        -- print("d sera")
         hotbuild.buildAction("Sensors")
     else
         -- use normal hotbuild if you are not a sera factory
-        print("d default")
+        -- print("d default")
         hotbuild.buildAction("Shields") -- labs in here
     end
 end
 
 function hko_hotkey_d_s()
-    print("d_s")
+    -- print("d_s")
     hko_hotkey_d()
 end
 
 function hko_hotkey_f()
-    print("f")
+    -- print("f")
 end
 
 function hko_hotkey_f_s()
-    print("f_s")
+    -- print("f_s")
     hko_hotkey_f()
 end
 
