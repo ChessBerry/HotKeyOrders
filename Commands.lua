@@ -56,10 +56,10 @@ function hko_hotkey_w(shift)
         -- Quantum Gates
         -- print("w gate")
         hbo.buildAction("engi_sacu")
-    elseif TableBelongsToCategory(categories.TRANSPORTATION, selection) then
+    elseif TableBelongsToCategory(categories.TRANSPORTATION + categories.CARRIER, selection) then
         -- Transports
         -- print("w transports")
-        CommandMode.StartCommandMode('order', {name = 'RULEUCC_Transport'})
+        CommandMode.StartCommandMode('order', {name = 'RULEUCC_Transport'}) -- transport and deploy
     else
         -- ACU, Subs and (sera) destros, flyers that can dock
         -- print("w acu")
@@ -78,13 +78,12 @@ function hko_hotkey_w_a()
     -- print("w_a")
     local selection = GetSelectedUnits() or nil
     if TableBelongsToCategory(categories.STRUCTURE * categories.TECH3, selection) then
-        CommandMode.StartCommandMode('order', {name = 'RULEUCC_Nuke'}) -- nuke launch
+        CommandMode.StartCommandMode('order', {name = 'RULEUCC_Nuke'}) -- nuke and billy nuke launch
     elseif TableBelongsToCategory(categories.TRANSPORTATION, selection) then
         CommandMode.StartCommandMode('order', {name = 'RULEUCC_Ferry'})
     else
         CommandMode.StartCommandMode('order', {name = 'RULEUCC_Tactical'}) -- tml launch
-    -- TODO: can't find billy nuke function fpr UEF ACU
-    -- TODO: can't find deploy function for carriers
+        -- CommandMode.StartCommandMode('order', {name = 'RULEUCC_Nuke'}) -- nuke and billy nuke launch
     end
 end
 
