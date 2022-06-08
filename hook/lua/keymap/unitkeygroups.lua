@@ -13,10 +13,9 @@ Order = {
         "xrs0205",
         "xes0205",
     },
-    ["Pgen"] = {
-        "Energy_Storage",
-    },
-
+    -- ["Pgen"] = {
+    --     "Energy_Storage",
+    -- },
 }
 
 --since we are merging unordered tables that contain ordered tables, we need to merge them manually instead of table.merged or whatever
