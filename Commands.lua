@@ -14,16 +14,13 @@ local CommandMode = import('/lua/ui/game/commandmode.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
 local CommandMode = import('/lua/ui/game/commandmode.lua') -- RUI is here, and not in the RUI mod folder via the hook RUI uses, I think
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
--- Note: Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
--- Note: The categories of each unit are listed in it's blueprint ".bp" file
+-- ----------- prob useless:
+local core = import('/lua/ui/game/commandmode.lua')
+-- local sim = import('/engine/Sim.lua')
+local Entity = import('/lua/sim/Entity.lua').Entity
+-- -----------
 
--- Regex to convert the KeyMapper.SetUserKeyAction stuff into a function blueprint
---  *'(hko_hotkey_)(\w*)'.*
---  function $1$2()
---      print("$2")
---  end
-
--- None of those seem to do anything:
+-- ----------- None of these seem to do anything:
 -- CommandMode.StartCommandMode('order', {name = 'RULEUCC_SpecialAction'})
 -- CommandMode.StartCommandMode('order', {name = 'RULEUCC_SiloBuildTactical'})
 -- CommandMode.StartCommandMode('order', {name = 'RULEUCC_SiloBuildNuke'})
@@ -31,6 +28,34 @@ local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, bu
 -- CommandMode.StartCommandMode('order', {name = 'RULEUCC_Invalid'})
 -- CommandMode.StartCommandMode('order', {name = 'RULEUCC_Script'})
 
+-- ----------- Other stuff:
+-- import('/lua/keymap/hotkeylabels.lua').ResetIdRelations()
+
+-- Seems like there are hotkey labels added in '/lua/ui/game/orders.lua':
+-- local hotkeyLabel_addLabel = import('/lua/keymap/hotkeylabelsUI.lua').addLabel
+
+-- ----------- Notes:
+-- Regex to convert the KeyMapper.SetUserKeyAction stuff into a function blueprint
+--  *'(hko_hotkey_)(\w*)'.*
+--  function $1$2()
+--      print("$2")
+--  end
+
+-- Basically all default hotkeys seem to be listed in '/lua/keymap/keyactions.lua'
+
+-- The categories of each unit are listed in it's blueprint ".bp" file
+
+-- It should be possible to upgrade a t1 factory to t3 by pressing the upgrade button twice, but I can't figure out what
+-- commands you need to give the factory to achieve that. See hko_hotkey_a() below.
+
+-- Everything in https://github.com/FAForever/fa/tree/deploy/fafdevelop/engine/Sim.lua is sim-side only, (NOT in UI mids)
+-- https://github.com/FAForever/fa/tree/deploy/fafdevelop/engine/User.lua is UI-side only, and 
+-- https://github.com/FAForever/fa/tree/deploy/fafdevelop/engine/Core.lua works in both
+
+-- ----------- Locals, maybe needed or smth, idk
+
+-- local EntityCategoryFilterDown = EntityCategoryFilterDown
+-- local EntityCategoryContains = EntityCategoryContains
 
 ----------- HKO Helper Functions
 
@@ -40,6 +65,16 @@ function TableBelongsToCategory(categories, selection)
     -- print("TableBelongsToCategory")
     return not table.empty(EntityCategoryFilterDown(categories, selection))
 end
+
+----------- Useful globals
+-- --- Returns if the unit can build the target unit
+-- ---@param blueprintID string
+-- ---@return boolean
+-- function Unit:CanBuild(blueprintID)
+-- end
+
+-- You can get the blueprint from a blueprint name/ide using the global table __blueprints. I.e: 
+-- print(__blueprints["zsb9601"].BlueprintId) does print "zsb9601". Note that the look up is case sensitive!
 
 ----------- HKO Hotkey Overloading Functions
 ----- 1st keyboard row
@@ -185,15 +220,50 @@ end
 
 function hko_hotkey_a()
     -- print("a")
+    -- print(__blueprints)
+    -- print(__blueprints["zsb9601"])
+    -- print(__blueprints["zsb9601"].BlueprintId)
     local selection = GetSelectedUnits() or nil
-    if TableBelongsToCategory(categories.STRUCTURE, selection) then
-        -- Only structures can upgrade
-        -- print("a1")
-        hotbuild.buildAction("Upgrades")
-    else
+    -- if TableBelongsToCategory(categories.STRUCTURE * categories.FACTORY, selection) then
+    --     local availableOrders, availableToggles, buildableCategories = GetUnitCommandData(selection)
+    --     print("a1")
+    --     -- hotbuild.buildAction("T3_Support_Factory")
+    --     -- hotbuild.buildActionUnit("T3_Support_Factory")
+    --     -- hotbuild.buildActionBuilding("T3_Support_Factory")
+    --     -- hotbuild.buildAction("Upgrades")
+    --     -- hotbuild.buildAction("UEB0301")
+    --     -- IssueBlueprintCommand
+
+    --     -- The below actually works for the sera land factory!
+    --     if EntityCategoryContains(buildableCategories, "ZSB9601") then
+    --         IssueBlueprintCommand("UNITCOMMAND_Upgrade", "ZSB9601", 1, false)
+    --     elseif EntityCategoryContains(buildableCategories, "ZSB9501") then
+    --         IssueBlueprintCommand("UNITCOMMAND_Upgrade", "ZSB9501", 1, false)
+    --     elseif EntityCategoryContains(buildableCategories, "XSB0301") then
+    --         IssueBlueprintCommand("UNITCOMMAND_Upgrade", "XSB0301", 1, false)
+    --     elseif EntityCategoryContains(buildableCategories, "XSB0201") then
+    --         IssueBlueprintCommand("UNITCOMMAND_Upgrade", "XSB0201", 1, false)
+    --     else
+    --         print("well that failed")
+    --     end
+
+    --     -- hotbuild.buildAction("Upgrades")
+    --     -- hotbuild.buildActionUpgrade()
+    -- -- elseif TableBelongsToCategory(categories.STRUCTURE - categories.ENGINEER, selection) then
+    -- end
+    if TableBelongsToCategory(categories.STRUCTURE - categories.ENGINEER, selection) then
+        -- Only structures can upgrade, but for the hive (XRB0104, XRB0204, XRB0304), the only structure that's also an
+        -- engineer, we prefer to have reclaim over upgrade, as the former might need to be used in a panic to reclaim
+        -- enemy units or something.
         -- print("a2")
+        -- print(GetUnitBlueprintByName("zsb9601"))
+        -- print(GetUnitBlueprintByName("zsb9601").BlueprintId)
+        hotbuild.buildAction("Upgrades")
+        -- hotbuild.buildActionUpgrade()
+    else
+        -- print("a3")
         CommandMode.EasyReclaim()
-    end 
+    end
 end
 
 function hko_hotkey_a_s()
