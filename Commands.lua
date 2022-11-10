@@ -12,7 +12,6 @@ local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
 local reclaim = import('/lua/ui/game/reclaim.lua')
 local CommandMode = import('/lua/ui/game/commandmode.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
-local CommandMode = import('/lua/ui/game/commandmode.lua') -- RUI is here, and not in the RUI mod folder via the hook RUI uses, I think
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 -- ----------- prob useless:
 local core = import('/lua/ui/game/commandmode.lua')
@@ -52,6 +51,8 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 -- https://github.com/FAForever/fa/tree/deploy/fafdevelop/engine/User.lua is UI-side only, and 
 -- https://github.com/FAForever/fa/tree/deploy/fafdevelop/engine/Core.lua works in both
 
+-- "Keybind labels in build queue" are set in construction.lua
+
 -- ----------- Locals, maybe needed or smth, idk
 
 -- local EntityCategoryFilterDown = EntityCategoryFilterDown
@@ -75,6 +76,9 @@ end
 
 -- You can get the blueprint from a blueprint name/ide using the global table __blueprints. I.e: 
 -- print(__blueprints["zsb9601"].BlueprintId) does print "zsb9601". Note that the look up is case sensitive!
+
+-- repr() turns lua objects, like tables, into human readable strings.
+-- reprsl() does the same and also logs it to INFO immediately
 
 ----------- HKO Hotkey Overloading Functions
 ----- 1st keyboard row
@@ -262,7 +266,8 @@ function hko_hotkey_a()
         -- hotbuild.buildActionUpgrade()
     else
         -- print("a3")
-        CommandMode.EasyReclaim()
+        -- CommandMode.EasyReclaim() -- depricated with patch 3745
+        CommandMode.StartCommandMode('order', {name = 'RULEUCC_Reclaim'}) --reclaim
     end
 end
 
