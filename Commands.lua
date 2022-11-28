@@ -53,6 +53,38 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 
 -- "Keybind labels in build queue" are set in construction.lua
 
+-- Discussion with dragun101 about hints for how to force hotkey labels in the command card:
+-- there has to be a function that gets called after the hotkeys are read though, right
+-- Dragun101 — Yesterday at 4:26 PM
+-- Yeah
+-- Cheeseberry — Yesterday at 4:26 PM
+-- the function that actually draws the pixels
+-- Dragun101 — Yesterday at 4:26 PM
+-- That function looks
+-- Cheeseberry — Yesterday at 4:26 PM
+-- i want that i think
+-- Dragun101 — Yesterday at 4:26 PM
+-- At every hotkey
+-- Then looks at evey hotkey assigned to a unitkeygroup
+-- Hotkey or abulity hotkeu
+-- Snd assigns/places letter over it
+-- Cheeseberry — Yesterday at 4:27 PM
+-- I want just that part
+-- Dragun101 — Yesterday at 4:27 PM
+-- Yesh its possinle
+-- Cheeseberry — Yesterday at 4:27 PM
+-- you know where in the code that is?
+-- Dragun101 — Yesterday at 4:27 PM
+-- I know why it does it not how it does it
+-- Its in gameview or sometjing
+-- Cheeseberry — Yesterday at 4:27 PM
+-- thats more than I know though xd
+-- Dragun101 — Yesterday at 4:28 PM
+-- Its same file as hotbuild.buildaction iirc
+-- But no its definetelt possinle but havr to rewrite the function to do so
+-- I just don’t know how
+-- Cheeseberry — Yesterday at 4:29 PM
+-- trial and error it shall be
 -- ----------- Locals, maybe needed or smth, idk
 
 -- local EntityCategoryFilterDown = EntityCategoryFilterDown
@@ -62,6 +94,7 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 
 -- Feels like there should be a better way to filter the selection table than 
 --  "not table.empty(EntityCategoryFilterDown())" but I haven't found one..
+-- Update: The function I want is probably EntityCategoryContains(category, Escort.UnitBeingBuilt), according to dragun101
 function TableBelongsToCategory(categories, selection)
     -- print("TableBelongsToCategory")
     return not table.empty(EntityCategoryFilterDown(categories, selection))
