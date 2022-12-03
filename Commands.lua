@@ -13,6 +13,8 @@ local reclaim = import('/lua/ui/game/reclaim.lua')
 local CommandMode = import('/lua/ui/game/commandmode.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
+local uiparty = import('/mods/UI-Party/modules/unitsplit.lua')
+
 -- ----------- prob useless:
 local core = import('/lua/ui/game/commandmode.lua')
 -- local sim = import('/engine/Sim.lua')
@@ -117,9 +119,9 @@ end
 
 ----- Number keyboard row
 
-
 function hko_hotkey_1()
     -- print("r")
+    uiparty.SelectNextGroup()
 end
 
 function hko_hotkey_1_s()
@@ -129,173 +131,176 @@ end
 
 function hko_hotkey_1_a()
     -- print("1_a")
+    uiparty.SelectNextGroup()
 end
 
 function hko_hotkey_1_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_1_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_2()
+    -- print("r")
+    misckeyactions.GetNearestIdleEngineerNotACU()
+end
+
+function hko_hotkey_2_s()
+    -- print("1_s")
+    hko_hotkey_2()
+end
+
+function hko_hotkey_2_a()
+    -- print("1_a")
+    misckeyactions.GetNearestIdleEngineerNotACU()
+end
+
+function hko_hotkey_2_as()
+    -- print("1_as")
+    hko_hotkey_2_a()
+end
+
+function hko_hotkey_3()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_3_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_3()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_3_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_3_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_3_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_4()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_4_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_4()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_4_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_4_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_4_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_5()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_5_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_5()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_5_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_5_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_5_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_6()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_6_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_6()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_6_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_6_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_6_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_7()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_7_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_7()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_7_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_7_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_7_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_8()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_8_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_8()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_8_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_8_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_8_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_9()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_9_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_9()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_9_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_9_as()
     -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_9_a()
 end
 
-function hko_hotkey_1()
+function hko_hotkey_0()
     -- print("r")
 end
 
-function hko_hotkey_1_s()
+function hko_hotkey_0_s()
     -- print("1_s")
-    hko_hotkey_1()
+    hko_hotkey_0()
 end
 
-function hko_hotkey_1_a()
+function hko_hotkey_0_a()
     -- print("1_a")
 end
 
-function hko_hotkey_1_as()
+function hko_hotkey_0_as()
     -- print("1_as")
-    hko_hotkey_r_a()
-end
-
-function hko_hotkey_1()
-    -- print("r")
-end
-
-function hko_hotkey_1_s()
-    -- print("1_s")
-    hko_hotkey_1()
-end
-
-function hko_hotkey_1_a()
-    -- print("1_a")
-end
-
-function hko_hotkey_1_as()
-    -- print("1_as")
-    hko_hotkey_r_a()
+    hko_hotkey_0_a()
 end
 
 
