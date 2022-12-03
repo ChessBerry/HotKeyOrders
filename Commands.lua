@@ -114,6 +114,191 @@ end
 -- reprsl() does the same and also logs it to INFO immediately
 
 ----------- HKO Hotkey Overloading Functions
+
+----- Number keyboard row
+
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+function hko_hotkey_1()
+    -- print("r")
+end
+
+function hko_hotkey_1_s()
+    -- print("1_s")
+    hko_hotkey_1()
+end
+
+function hko_hotkey_1_a()
+    -- print("1_a")
+end
+
+function hko_hotkey_1_as()
+    -- print("1_as")
+    hko_hotkey_r_a()
+end
+
+
 ----- 1st keyboard row
 
 function hko_hotkey_w(shift)
