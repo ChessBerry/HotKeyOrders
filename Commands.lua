@@ -536,6 +536,52 @@ function hko_hotkey_f_s()
     hko_hotkey_f()
 end
 
+function hko_hotkey_filter_highest_engineer_and_assist()
+    -- print("space_c")
+    -- It's the same command that was in the main faf branch for a bit and then got removed for reasons I don't quite 
+    -- understand. Code for the hotkey taken from here: 
+    -- https://github.com/FAForever/fa/commit/26f4a01e3b98e9fb48d65d8397a2d6d188382e01
+    
+    -- In the original code there is also a callback for the function defined in lua/SimCallbacks.lua. I don't know why
+    -- it's needed as the hotkey seems to work fine without it and I don't know how to hook into that file, so I'll just
+    -- ignore it. Here is the callback though, copied form the same link as the function itself:
+    -- Callbacks.SelectHighestEngineerAndAssist = function(data, selection)
+    --     if selection then
+    
+    --         local noACU = EntityCategoryFilterDown(categories.ALLUNITS - categories.COMMAND, selection)
+    
+    --         ---@type Unit
+    --         local target = GetEntityById(data.TargetId)
+    
+    --         IssueClearCommands(noACU)
+    --         IssueGuard(noACU, target)
+    --     end
+    -- end
+
+    local selection = GetSelectedUnits() or nil
+
+    if selection then
+
+        local tech1 = EntityCategoryFilterDown(categories.TECH1 - categories.COMMAND, selection)
+        local tech2 = EntityCategoryFilterDown(categories.TECH2 - categories.COMMAND, selection)
+        local tech3 = EntityCategoryFilterDown(categories.TECH3 - categories.COMMAND, selection)
+        local sACUs = EntityCategoryFilterDown(categories.SUBCOMMANDER - categories.COMMAND, selection)
+
+        if next(sACUs) then
+            SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = sACUs[1]:GetEntityId() }}, true)
+            SelectUnits({sACUs[1]})
+        elseif next(tech3) then
+            SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech3[1]:GetEntityId() }}, true)
+            SelectUnits({tech3[1]})
+        elseif next(tech2) then
+            SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech2[1]:GetEntityId() }}, true)
+            SelectUnits({tech2[1]})
+        else
+            -- do nothing
+        end
+    end
+end
+
 
 
 
