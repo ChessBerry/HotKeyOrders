@@ -14,10 +14,18 @@ local CommandMode = import('/lua/ui/game/commandmode.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 local uiparty = import('/mods/UI-Party/modules/unitsplit.lua')
+-- local SimCallbacks = import('/lua/simcallbacks.lua')  -- importing this file doesn't seem to work?
 
+-- -- ----------- Sim C++ Functions: --> Doesn't work, no access to those directly as UI mods
+-- local sim = import('/engine/Sim.lua')
+-- local GetEntityById = sim.GetEntityById
+-- -- local GetEntityById = import('/engine/Sim.lua').GetEntityById
+-- local IssueClearCommands = sim.IssueClearCommands
+-- local IssueGuard = sim.IssueGuard
+-- local CheatsEnabled = sim.CheatsEnabled
+-- local IssueKillSelf = sim.IssueKillSelf
 -- ----------- prob useless:
 local core = import('/lua/ui/game/commandmode.lua')
--- local sim = import('/engine/Sim.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
 -- -----------
 
@@ -536,54 +544,120 @@ function hko_hotkey_f_s()
     hko_hotkey_f()
 end
 
-function hko_hotkey_filter_highest_engineer_and_assist()
-    -- print("space_c")
+-- -- Sim Callback for the hko_hotkey_filter_highest_engineer_and_assist function below
+-- function manual_sim_callback_for_hotkey_filter_highest_engineer_and_assist(target, selection)
+
+--     -- reprsl(data)
+--     reprsl(SimCallback)
+--     -- reprsl(selection)
+--     if selection then
+
+--         local noACU = EntityCategoryFilterDown(categories.ALLUNITS - categories.COMMAND, selection)
+
+--         -- local target = sim.GetEntityById(data.TargetId)
+--         -- target = data.Target
+--         -- reprsl(noACU)
+--         reprsl(target)
+--         CheatsEnabled()
+--         reprsl(CheatsEnabled())
+--         IssueKillSelf(target)
+--         -- IssueClearCommands(noACU)
+--         -- SimCallback({Func= 'ClearCommands', Args = {units = noACU}}, true)
+--         IssueGuard(noACU, target)
+--     end
+-- end
+
+-- function hko_hotkey_filter_highest_engineer_and_assist()
+--     -- print("space_c")
+--     -- It's the same command that was in the main faf branch for a bit and then got removed for reasons I don't quite 
+--     -- understand. Code for the hotkey taken from here: 
+--     -- https://github.com/FAForever/fa/commit/26f4a01e3b98e9fb48d65d8397a2d6d188382e01
+    
+--     local selection = GetSelectedUnits() or nil
+
+--     if selection then
+
+--         local tech1 = EntityCategoryFilterDown(categories.TECH1 - categories.COMMAND, selection)
+--         local tech2 = EntityCategoryFilterDown(categories.TECH2 - categories.COMMAND, selection)
+--         local tech3 = EntityCategoryFilterDown(categories.TECH3 - categories.COMMAND, selection)
+--         local sACUs = EntityCategoryFilterDown(categories.SUBCOMMANDER - categories.COMMAND, selection)
+
+--         if next(sACUs) then
+--             -- SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = sACUs[1]:GetEntityId() }}, true)
+--             manual_sim_callback_for_hotkey_filter_highest_engineer_and_assist(sACUs[1], selection)
+--             SelectUnits({sACUs[1]})
+--         elseif next(tech3) then
+--             -- SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech3[1]:GetEntityId() }}, true)
+--             manual_sim_callback_for_hotkey_filter_highest_engineer_and_assist(tech3[1], selection)
+--             SelectUnits({tech3[1]})
+--         elseif next(tech2) then
+--             -- SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech2[1]:GetEntityId() }}, true)
+--             manual_sim_callback_for_hotkey_filter_highest_engineer_and_assist(tech2[1], selection)
+--             SelectUnits({tech2[1]})
+--         else
+--             -- do nothing
+--         end
+--     end
+-- end
+
+-- function hko_hotkey_filter_highest_engineer_and_assist()
+--     local selection = GetSelectedUnits()
+
+--     reprsl("hko_hotkey_filter_highest_engineer_and_assist")
+--     -- import('/lua/effectutilities.lua')
+--     -- import('/lua/sim/prop.lua')
+--     -- import('/lua/wreckage.lua')
+--     -- import('/lua/simutils.lua')
+--     -- local SimCallbacks = import('/lua/simcallbacks.lua')
+    
+--     if selection then
+
+--         local tech1 = EntityCategoryFilterDown(categories.TECH1 - categories.COMMAND, selection)
+--         local tech2 = EntityCategoryFilterDown(categories.TECH2 - categories.COMMAND, selection)
+--         local tech3 = EntityCategoryFilterDown(categories.TECH3 - categories.COMMAND, selection)
+--         local sACUs = EntityCategoryFilterDown(categories.SUBCOMMANDER - categories.COMMAND, selection)
+
+--         if next(sACUs) then
+--             SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = sACUs[1]:GetEntityId() }}, true)
+--             SelectUnits({sACUs[1]})
+--         elseif next(tech3) then
+--             SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech3[1]:GetEntityId() }}, true)
+--             SelectUnits({tech3[1]})
+--         elseif next(tech2) then
+--             SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech2[1]:GetEntityId() }}, true)
+--             SelectUnits({tech2[1]})
+--         else
+--             -- do nothing
+--         end
+--     end
+-- end
+
+function hko_hotkey_filter_highest_engineers()
     -- It's the same command that was in the main faf branch for a bit and then got removed for reasons I don't quite 
     -- understand. Code for the hotkey taken from here: 
     -- https://github.com/FAForever/fa/commit/26f4a01e3b98e9fb48d65d8397a2d6d188382e01
     
-    -- In the original code there is also a callback for the function defined in lua/SimCallbacks.lua. I don't know why
-    -- it's needed as the hotkey seems to work fine without it and I don't know how to hook into that file, so I'll just
-    -- ignore it. Here is the callback though, copied form the same link as the function itself:
-    -- Callbacks.SelectHighestEngineerAndAssist = function(data, selection)
-    --     if selection then
-    
-    --         local noACU = EntityCategoryFilterDown(categories.ALLUNITS - categories.COMMAND, selection)
-    
-    --         ---@type Unit
-    --         local target = GetEntityById(data.TargetId)
-    
-    --         IssueClearCommands(noACU)
-    --         IssueGuard(noACU, target)
-    --     end
-    -- end
-
-    local selection = GetSelectedUnits() or nil
+    local selection = GetSelectedUnits()
 
     if selection then
 
         local tech1 = EntityCategoryFilterDown(categories.TECH1 - categories.COMMAND, selection)
         local tech2 = EntityCategoryFilterDown(categories.TECH2 - categories.COMMAND, selection)
-        local tech3 = EntityCategoryFilterDown(categories.TECH3 - categories.COMMAND, selection)
-        local sACUs = EntityCategoryFilterDown(categories.SUBCOMMANDER - categories.COMMAND, selection)
-
-        if next(sACUs) then
-            SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = sACUs[1]:GetEntityId() }}, true)
-            SelectUnits({sACUs[1]})
-        elseif next(tech3) then
-            SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech3[1]:GetEntityId() }}, true)
-            SelectUnits({tech3[1]})
+        -- local tech3 = EntityCategoryFilterDown(categories.TECH3 - categories.COMMAND, selection)
+        -- local sACUs = EntityCategoryFilterDown(categories.SUBCOMMANDER - categories.COMMAND, selection)
+        local tech3_and_sACUs = EntityCategoryFilterDown((categories.SUBCOMMANDER + categories.TECH3) - categories.COMMAND, selection)
+        
+        if next(tech3_and_sACUs) then
+            SelectUnits(tech3_and_sACUs)
         elseif next(tech2) then
-            SimCallback({Func= 'SelectHighestEngineerAndAssist', Args = { TargetId = tech2[1]:GetEntityId() }}, true)
-            SelectUnits({tech2[1]})
+            SelectUnits(tech2)
+        elseif next(tech1) then
+            SelectUnits(tech1)
         else
             -- do nothing
         end
     end
 end
-
-
-
 
 ----------- Functions by Dragun
 

@@ -117,7 +117,8 @@ KeyMapper.SetUserKeyAction('hko_hotkey_d_s', {action =  'UI_Lua import("/mods/Ho
 KeyMapper.SetUserKeyAction('hko_hotkey_f', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_f()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_f_s', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_f_s()', category = 'HotKeyKeys', order = 101})
 
-KeyMapper.SetUserKeyAction('hko_hotkey_filter_highest_engineer_and_assist', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_filter_highest_engineer_and_assist()', category = 'HotKeyKeys', order = 101})
+-- KeyMapper.SetUserKeyAction('hko_hotkey_filter_highest_engineer_and_assist', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_filter_highest_engineer_and_assist()', category = 'HotKeyKeys', order = 101})
+KeyMapper.SetUserKeyAction('hko_hotkey_filter_highest_engineers', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_filter_highest_engineers()', category = 'HotKeyKeys', order = 101})
 
 -- KeyMapper.SetUserKeyAction('shift_order1', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities1()', category = 'HotKeyKeys', order = 211})
 -- KeyMapper.SetUserKeyAction('shift_order2', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").toggleAbilities2()', category = 'HotKeyKeys', order = 212})
