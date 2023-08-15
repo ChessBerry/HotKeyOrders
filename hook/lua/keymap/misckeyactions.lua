@@ -116,6 +116,8 @@ KeyMapper.SetUserKeyAction('hko_hotkey_d', {action =  'UI_Lua import("/mods/HotK
 KeyMapper.SetUserKeyAction('hko_hotkey_d_s', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_d_s()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_f', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_f()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_f_s', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_f_s()', category = 'HotKeyKeys', order = 101})
+KeyMapper.SetUserKeyAction('hko_hotkey_g', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_g()', category = 'HotKeyKeys', order = 101})
+KeyMapper.SetUserKeyAction('hko_hotkey_g_s', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_g_s()', category = 'HotKeyKeys', order = 101})
 
 -- KeyMapper.SetUserKeyAction('hko_hotkey_filter_highest_engineer_and_assist', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_filter_highest_engineer_and_assist()', category = 'HotKeyKeys', order = 101})
 KeyMapper.SetUserKeyAction('hko_hotkey_filter_highest_engineers', {action =  'UI_Lua import("/mods/HotKeyOrders/Commands.lua").hko_hotkey_filter_highest_engineers()', category = 'HotKeyKeys', order = 101})

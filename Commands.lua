@@ -14,6 +14,7 @@ local CommandMode = import('/lua/ui/game/commandmode.lua')
 -- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 local uiparty = import('/mods/UI-Party/modules/unitsplit.lua')
+local fafdevtemplates = import("/mods/faf-capping/context-based-templates.lua")
 -- local SimCallbacks = import('/lua/simcallbacks.lua')  -- importing this file doesn't seem to work?
 
 -- -- ----------- Sim C++ Functions: --> Doesn't work, no access to those directly as UI mods
@@ -542,6 +543,23 @@ end
 function hko_hotkey_f_s()
     -- print("f_s")
     hko_hotkey_f()
+end
+
+function hko_hotkey_g()
+    --print("g")
+    local selection = GetSelectedUnits() or nil
+    if TableBelongsToCategory(categories.FACTORY, selection) then
+        -- use default hotbuild when you have a factory selected
+        hotbuild.buildAction("Templates")
+    else
+        -- use the new context based templates when you don't have a factory selected
+        fafdevtemplates.Cycle()
+    end
+end
+
+function hko_hotkey_g_s()
+     --print("g_s")
+    hko_hotkey_g()
 end
 
 -- -- Sim Callback for the hko_hotkey_filter_highest_engineer_and_assist function below
