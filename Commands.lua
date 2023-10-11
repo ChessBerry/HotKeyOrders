@@ -2,20 +2,29 @@
 local misckeyactions = import('/lua/keymap/misckeyactions.lua')
 local orders = import('/lua/ui/game/orders.lua')
 local hotbuild = import('/lua/keymap/hotbuild.lua')
-local select = import('/lua/ui/game/selection.lua') -- File doesn't exist? Is referenced in the main game's repo too though
-local spreadattack = import ('/lua/spreadattack.lua')
-local smart = import('/lua/keymap/smartSelection.lua')
-local construction = import('/lua/ui/game/construction.lua')
-local avatars = import('/lua/ui/game/avatars.lua')
-local ping = import('/lua/ui/game/ping.lua')
-local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
-local reclaim = import('/lua/ui/game/reclaim.lua')
+
 local CommandMode = import('/lua/ui/game/commandmode.lua')
--- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
 local hbo = import('/lua/keymap/hotbuild.lua') -- Don't know why HBO is here, but that's where the hotkey in game.prefs links to
 local uiparty = import('/mods/UI-Party/modules/unitsplit.lua')
-local fafdevtemplates = import("/mods/faf-capping/context-based-templates.lua")
+local ui_game_hotkeys = import("/lua/ui/game/hotkeys/context-based-templates.lua")
+
+-- ----------- Mods that don't exist anymore
+--local spreadattack = import ('/lua/spreadattack.lua')
+--local fafdevtemplates = import("/mods/faf-capping/context-based-templates.lua")
+
+-- ----------- Maybe useful at some point, but currently not required
+--local select = import('/lua/ui/game/selection.lua') -- File doesn't exist? Is referenced in the main game's repo too though
+--local smart = import('/lua/keymap/smartSelection.lua')
+--local construction = import('/lua/ui/game/construction.lua')
+--local avatars = import('/lua/ui/game/avatars.lua')
+--local ping = import('/lua/ui/game/ping.lua')
+--local disperse = import('/mods/Disperse Move/modules/dispersemove.lua')
+--local reclaim = import('/lua/ui/game/reclaim.lua')
+-- local rui = import('/mods/RUI/hook/lua/ui/game/commandmode.lua')
 -- local SimCallbacks = import('/lua/simcallbacks.lua')  -- importing this file doesn't seem to work?
+--local core = import('/lua/ui/game/commandmode.lua')
+--local Entity = import('/lua/sim/Entity.lua').Entity
+
 
 -- -- ----------- Sim C++ Functions: --> Doesn't work, no access to those directly as UI mods
 -- local sim = import('/engine/Sim.lua')
@@ -26,8 +35,7 @@ local fafdevtemplates = import("/mods/faf-capping/context-based-templates.lua")
 -- local CheatsEnabled = sim.CheatsEnabled
 -- local IssueKillSelf = sim.IssueKillSelf
 -- ----------- prob useless:
-local core = import('/lua/ui/game/commandmode.lua')
-local Entity = import('/lua/sim/Entity.lua').Entity
+
 -- -----------
 
 -- ----------- None of these seem to do anything:
@@ -366,6 +374,7 @@ end
 function hko_hotkey_e()
     -- print("e")
     local selection = GetSelectedUnits() or nil
+    reprsl(selection)
     if TableBelongsToCategory(categories.FACTORY - categories.GATE, selection) then
         hotbuild.buildAction("Sensors")
     elseif TableBelongsToCategory(categories.GATE, selection) then
@@ -547,14 +556,20 @@ end
 
 function hko_hotkey_g()
     --print("g")
-    local selection = GetSelectedUnits() or nil
-    if TableBelongsToCategory(categories.FACTORY, selection) then
-        -- use default hotbuild when you have a factory selected
-        hotbuild.buildAction("Templates")
-    else
-        -- use the new context based templates when you don't have a factory selected
-        fafdevtemplates.Cycle()
-    end
+
+    -- This functino should switch between non-context sensitive and context sensitive templates at some point, but for
+    -- now it just uses the default hotbuild templates because I haven't added my own templates to the context sensitive
+    -- templates yet.
+    hotbuild.buildAction("Templates")
+
+    --local selection = GetSelectedUnits() or nil
+    --if TableBelongsToCategory(categories.FACTORY, selection) then
+    --    -- use default hotbuild when you have a factory selected
+    --    hotbuild.buildAction("Templates")
+    --else
+    --    -- use the new context based templates when you don't have a factory selected
+    --    ui_game_hotkeys.Cycle()
+    --end
 end
 
 function hko_hotkey_g_s()
